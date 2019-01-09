@@ -19,6 +19,7 @@
   "author": "Louis-Dominique Dubeau <ldd@lddubeau.com>",
   "license": "MIT",
   "main": "expect-rejection.js",
+  "types": "expect-rejection.d.ts",
   "dependencies": {
     "chai": "^4.2.0"
   },
