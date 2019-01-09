@@ -1,0 +1,6 @@
+{
+  "extends": "tslint-config-lddubeau",
+  "rules": {
+    "unified-signatures": false
+  }
+}
