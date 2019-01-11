@@ -18,8 +18,7 @@ export type ErrorClass = new (...args: any[]) => Error;
  *
  * @returns A promise that resolves or rejects once the test is done.
  */
-// tslint:disable-next-line:no-any
-export async function expectRejection(p: Promise<any>,
+export async function expectRejection(p: Promise<unknown>,
                                       error: Error): Promise<void>;
 /**
  * Test that a promise rejects with a specific pattern. The error's ``message``
@@ -32,8 +31,7 @@ export async function expectRejection(p: Promise<any>,
  *
  * @returns A promise that resolves or rejects once the test is done.
  */
-// tslint:disable-next-line:no-any
-export async function expectRejection(p: Promise<any>,
+export async function expectRejection(p: Promise<unknown>,
                                       pattern: RegExp | string): Promise<void>;
 /**
  * Test that a promise rejects with a specific error class and specific pattern.
@@ -53,12 +51,10 @@ export async function expectRejection(p: Promise<any>,
  *
  * @returns A promise that resolves or rejects once the test is done.
  */
-// tslint:disable-next-line:no-any
-export async function expectRejection(p: Promise<any>,
+export async function expectRejection(p: Promise<unknown>,
                                       errorClass: ErrorClass,
                                       pattern: RegExp | string): Promise<void>;
-// tslint:disable-next-line:no-any
-export async function expectRejection(p: Promise<any>,
+export async function expectRejection(p: Promise<unknown>,
                                       errorLike:
                                       RegExp | string | ErrorClass | Error,
                                       pattern?: RegExp | string):
