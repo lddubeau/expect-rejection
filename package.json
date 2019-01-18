@@ -43,7 +43,7 @@
     "tsc": "tsc -p tsconfig.json",
     "clean-package": "sed -e'/private/d' package.json > build/dist/package.json",
     "build": "npm run tsc && npm run clean-package && cp README.md build/dist/",
-    "lint": "tslint --format verbose -p tsconfig.json && npmPkgJsonLint package.json",
+    "lint": "tslint --format verbose -p tsconfig.json && tslint --format verbose -p test/tsconfig.json && npmPkgJsonLint package.json",
     "test": "mocha",
     "posttest": "npm run lint",
     "build-and-test": "npm run build && npm run test",
