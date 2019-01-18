@@ -1,3 +1,14 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/lddubeau/expect-rejection/compare/v1.0.3...v1.1.0) (2019-01-18)
+
+
+### Features
+
+* allow testing the error class without message test ([05a549a](https://github.com/lddubeau/expect-rejection/commit/05a549a))
+* return the exception and allow single-argument call ([3bc9ce6](https://github.com/lddubeau/expect-rejection/commit/3bc9ce6))
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/lddubeau/expect-rejection/compare/v1.0.2...v1.0.3) (2019-01-11)
 
