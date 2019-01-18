@@ -1,15 +1,20 @@
+// tslint:disable-next-line:missing-jsdoc
 import { expect } from "chai";
+// tslint:disable-next-line:no-import-side-effect no-implicit-dependencies
 import "mocha";
 
 import { expectRejection } from "../build/dist/expect-rejection";
 
+// tslint:disable-next-line:completed-docs
 class Custom extends Error {
+  // tslint:disable-next-line:no-any
   constructor(...args: any[]) {
     super(...args);
     if (Object.setPrototypeOf !== undefined) {
       Object.setPrototypeOf(this, Custom.prototype);
     }
     else {
+      // tslint:disable-next-line:no-any
       (this as any).__proto__ = Custom.prototype;
     }
   }
@@ -26,6 +31,13 @@ describe("expectRejection", () => {
       return;
     }
     throw new Error("expectRejection should have rejected");
+  });
+
+  describe("with a single argument", () => {
+    it("resolves if the promise rejects", async () => {
+      const got = await expectRejection(Promise.reject(1));
+      expect(got).to.equal(1);
+    });
   });
 
   describe("with error instance", () => {
@@ -45,7 +57,8 @@ describe("expectRejection", () => {
 
     it("resolves if the error is strictly equal", async () => {
       const err = new Error("moo");
-      await expectRejection(Promise.reject(err), err);
+      const got = await expectRejection(Promise.reject(err), err);
+      expect(got).to.equal(err);
     });
   });
 
@@ -63,7 +76,9 @@ describe("expectRejection", () => {
     });
 
     it("resolves if the string matches", async () => {
-      await expectRejection(Promise.reject(new Error("moo")), "moo");
+      const err = new Error("moo");
+      const got = await expectRejection(Promise.reject(err), "moo");
+      expect(got).to.equal(err);
     });
   });
 
@@ -81,7 +96,9 @@ describe("expectRejection", () => {
     });
 
     it("resolves if the RegExp matches", async () => {
-      await expectRejection(Promise.reject(new Error("moo")), /o/);
+      const err = new Error("moo");
+      const got = await expectRejection(Promise.reject(err), /o/);
+      expect(got).to.equal(err);
     });
   });
 
@@ -112,7 +129,9 @@ describe("expectRejection", () => {
     });
 
     it("resolves if the class and string match", async () => {
-      await expectRejection(Promise.reject(new Custom("moo")), Custom, "moo");
+      const err = new Custom("moo");
+      const got = await expectRejection(Promise.reject(err), Custom, "moo");
+      expect(got).to.equal(err);
     });
   });
 
@@ -143,7 +162,9 @@ describe("expectRejection", () => {
     });
 
     it("resolves if the class and RegExp match", async () => {
-      await expectRejection(Promise.reject(new Custom("moo")), Custom, /o/);
+      const err = new Custom("moo");
+      const got = await expectRejection(Promise.reject(err), Custom, /o/);
+      expect(got).to.equal(err);
     });
   });
 });
