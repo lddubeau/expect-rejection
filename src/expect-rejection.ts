@@ -67,7 +67,7 @@ export async function expectRejection(p: Promise<unknown>,
 export async function expectRejection<E extends Error>(
   p: Promise<unknown>,
   errorClass: ErrorClass<E>,
-  pattern: RegExp | string): Promise<E>;
+  pattern?: RegExp | string): Promise<E>;
 export async function expectRejection<E extends Error>(
   p: Promise<unknown>,
   errorLike?: RegExp | string | ErrorClass<E> | E,
@@ -91,11 +91,13 @@ export async function expectRejection<E extends Error>(
           pattern = errorLike;
         }
 
-        if (pattern instanceof RegExp) {
-          expect(ex).to.have.property("message").match(pattern);
-        }
-        else {
-          expect(ex).to.have.property("message").equal(pattern);
+        if (pattern !== undefined) {
+          if (pattern instanceof RegExp) {
+            expect(ex).to.have.property("message").match(pattern);
+          }
+          else {
+            expect(ex).to.have.property("message").equal(pattern);
+          }
         }
       }
     }

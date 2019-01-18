@@ -102,6 +102,27 @@ describe("expectRejection", () => {
     });
   });
 
+  describe("with error class", () => {
+    it("rejects if the class does not match", async () => {
+      try {
+        await expectRejection(Promise.reject(new Error("moo")), Custom);
+      }
+      catch (e) {
+        expect(e.message).to
+          .equal("expected [Error: moo] to be an instance of Custom");
+
+        return;
+      }
+      throw new Error("expectRejection should have rejected");
+    });
+
+    it("resolves if the class matches", async () => {
+      const err = new Custom("moo");
+      const got = await expectRejection(Promise.reject(err), Custom);
+      expect(got).to.equal(err);
+    });
+  });
+
   describe("with error class and string pattern", () => {
     it("rejects if the class does not match", async () => {
       try {
