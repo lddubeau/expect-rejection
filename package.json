@@ -35,9 +35,9 @@
     "npm-package-json-lint-config-lddubeau": "^1.1.0",
     "source-map-support": "^0.5.16",
     "ts-node": "^8.5.0",
-    "tslint": "^5.12.1",
-    "tslint-config-lddubeau": "^2.1.0",
-    "typescript": "^3.2.4"
+    "tslint": "^5.20.1",
+    "tslint-config-lddubeau": "^4.1.0",
+    "typescript": "^3.7.2"
   },
   "scripts": {
     "tsc": "tsc -p tsconfig.json",
