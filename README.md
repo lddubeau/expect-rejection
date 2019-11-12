@@ -17,6 +17,24 @@ So I've been using boilerplate to test rejections in this test suite, and that
 test suite, and that other suite, etc. I'm tired of the code duplication. Hence
 this library.
 
+Usage
+=====
+
+Version 2 requires that you FIRST use the ``use`` function **exported by this
+library** to link this library with Chai.
+
+Then you can call ``expectRejection``. Read the TypeScript code for detailed
+documentation about parameters, etc.
+
+```
+import * as chai from "chai";
+import { expectRejection, use } from "expect-rejection";
+
+use(chai);
+
+expectRejection(...);
+```
+
 FAQ
 ===
 

@@ -1,7 +1,13 @@
 /**
  * A tiny library for testing rejections.
  */
-import { expect } from "chai";
+/// <reference types="chai" />
+
+let chai: Chai.ChaiStatic | undefined;
+
+export function use(newChai: Chai.ChaiStatic): void {
+  chai = newChai;
+}
 
 // tslint:disable-next-line:no-any
 export type ErrorClass<E extends Error> = new (...args: any[]) => E;
@@ -80,11 +86,13 @@ export async function expectRejection<E extends Error>(
   catch (ex) {
     if (errorLike !== undefined) {
       if (errorLike instanceof Error) {
-        expect(ex).to.equal(errorLike);
+        // tslint:disable-next-line:no-non-null-assertion
+        chai!.expect(ex).to.equal(errorLike);
       }
       else {
         if (!(errorLike instanceof RegExp || typeof errorLike === "string")) {
-          expect(ex).to.be.instanceof(errorLike);
+          // tslint:disable-next-line:no-non-null-assertion
+          chai!.expect(ex).to.be.instanceof(errorLike);
         }
         else {
           // tslint:disable-next-line:no-parameter-reassignment
@@ -93,10 +101,12 @@ export async function expectRejection<E extends Error>(
 
         if (pattern !== undefined) {
           if (pattern instanceof RegExp) {
-            expect(ex).to.have.property("message").match(pattern);
+            // tslint:disable-next-line:no-non-null-assertion
+            chai!.expect(ex).to.have.property("message").match(pattern);
           }
           else {
-            expect(ex).to.have.property("message").equal(pattern);
+            // tslint:disable-next-line:no-non-null-assertion
+            chai!.expect(ex).to.have.property("message").equal(pattern);
           }
         }
       }

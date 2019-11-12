@@ -1,9 +1,12 @@
 // tslint:disable-next-line:missing-jsdoc
-import { expect } from "chai";
+import * as chai from "chai";
 // tslint:disable-next-line:no-import-side-effect no-implicit-dependencies
 import "mocha";
 
-import { expectRejection } from "../build/dist/expect-rejection";
+import { expectRejection, use } from "../build/dist/expect-rejection";
+
+use(chai);
+const { expect } = chai;
 
 // tslint:disable-next-line:completed-docs
 class Custom extends Error {
